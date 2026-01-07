@@ -1,4 +1,3 @@
-import React from 'react';
 import { Music, MapPin, Star, Mic, PenTool, Waves, BookOpen, Camera, Utensils, Sparkles, Heart, Flame, Cookie, Gift, Home, Map, Gem, Shirt, User } from 'lucide-react';
 import { PhotoMemory, SpellMessage, Song } from './types';
 
@@ -73,6 +72,73 @@ export const PENSIEVE_MEMORIES = [
     color: "from-violet-100 via-fuchsia-50 to-pink-200"
   }
 ];
+
+export const SORTING_QUIZ = {
+  questions: [
+    {
+      id: 1,
+      text: "Which magical vessel calls to your spirit?",
+      options: [
+        { text: "Flask of Ever-Burning Fire", type: "vanguard" },
+        { text: "Jar of Trapped Starlight", type: "dreamer" },
+        { text: "Basin of Infinite Deep Water", type: "lighthouse" },
+        { text: "Cup of Golden Sunshine Tea", type: "sage" }
+      ]
+    },
+    {
+      id: 2,
+      text: "A path diverges in the Forbidden Forest. Where do you step?",
+      options: [
+        { text: "Toward the light of a hidden clearing", type: "sage" },
+        { text: "Straight ahead, where no one has gone", type: "vanguard" },
+        { text: "Along the stream that reflects the moon", type: "dreamer" },
+        { text: "Into the whisper of ancient trees", type: "lighthouse" }
+      ]
+    },
+    {
+      id: 3,
+      text: "Your Patronus takes form. What feeling powers it?",
+      options: [
+        { text: "The thrill of a new discovery", type: "vanguard" },
+        { text: "A quiet moment of absolute clarity", type: "sage" },
+        { text: "Unstoppable, infectious laughter", type: "dreamer" },
+        { text: "The warmth of a shared secret", type: "lighthouse" }
+      ]
+    },
+    {
+      id: 4,
+      text: "Which magical tool would you master first?",
+      options: [
+        { text: "A Compass that finds what's lost", type: "vanguard" },
+        { text: "A Lens that sees the hidden truth", type: "sage" },
+        { text: "A Quill that writes the future", type: "dreamer" },
+        { text: "A Loom that weaves joy and peace", type: "lighthouse" }
+      ]
+    }
+  ],
+  archetypes: {
+    vanguard: {
+      title: "The Radiant Vanguard",
+      description: "You lead with a light that others follow without question. Your 20s will be defined by bold steps, infectious energy, and the courage to turn every ordinary day into a grand adventure.",
+      quote: "Success is not final, failure is not fatal: it is the courage to continue that counts."
+    },
+    sage: {
+      title: "The Sage of Sunbeams",
+      description: "Possessing wisdom that belies your years, you find the warmth in silence and the depth in simple things. Your decade ahead is one of profound insight, patient growth, and radiant peace.",
+      quote: "Wisdom begins in wonder, and you, Sneha, are the most wonderful of all."
+    },
+    dreamer: {
+      title: "The Ethereal Dreamer",
+      description: "You see the world through a lens of magic and poetry. Your 20s will be a tapestry of creative sparks, beautiful connections, and the rare ability to make everyone around you believe in magic again.",
+      quote: "Dream as if you'll live forever, live as if you'll die today."
+    },
+    lighthouse: {
+      title: "The Soul-Lighthouse",
+      description: "Grounded, empathetic, and remarkably true to yourself. You are the anchor in the storm and the warmth of a home. Your 20s will see you building foundations of love and integrity that will last a lifetime.",
+      quote: "There is no light more beautiful than the one that guides others home."
+    }
+  }
+};
 
 export const TWENTY_LETTERS = [
   {
@@ -206,48 +272,48 @@ export const FAVORITE_SONGS: Song[] = [
 ];
 
 export const HOBBIES = [
-  { name: "Writing", icon: <PenTool size={20} /> },
-  { name: "Reading", icon: <BookOpen size={20} /> },
-  { name: "Photography", icon: <Camera size={20} /> },
-  { name: "Beach", icon: <Waves size={20} /> },
-  { name: "Cooking", icon: <Utensils size={20} /> },
-  { name: "Dancing", icon: <Music size={20} /> },
-  { name: "Singing", icon: <Mic size={20} /> }
+  { name: "Writing", icon: PenTool },
+  { name: "Reading", icon: BookOpen },
+  { name: "Photography", icon: Camera },
+  { name: "Beach", icon: Waves },
+  { name: "Cooking", icon: Utensils },
+  { name: "Dancing", icon: Music },
+  { name: "Singing", icon: Mic }
 ];
 
 export const HER_FOOD = [
-  { name: "Chinese", icon: <Utensils size={20} /> },
-  { name: "Indian", icon: <MapPin size={20} /> },
-  { name: "Mio amore", subtitle: "special mention", icon: <Heart size={20} /> },
-  { name: "Sweets", icon: <Star size={20} /> },
-  { name: "Fried chicken", icon: <Flame size={20} /> },
-  { name: "Blueberry muffin", icon: <Cookie size={20} /> },
-  { name: "Cadbury", subtitle: "with no nuts", icon: <Gift size={20} /> }
+  { name: "Chinese", icon: Utensils },
+  { name: "Indian", icon: MapPin },
+  { name: "Mio amore", subtitle: "special mention", icon: Heart },
+  { name: "Sweets", icon: Star },
+  { name: "Fried chicken", icon: Flame },
+  { name: "Blueberry muffin", icon: Cookie },
+  { name: "Cadbury", subtitle: "with no nuts", icon: Gift }
 ];
 
 export const HER_PLACES = [
-  { name: "Home", icon: <Home size={20} /> },
-  { name: "Ganga Ghat", icon: <Waves size={20} /> },
-  { name: "Temples", icon: <Sparkles size={20} /> },
-  { name: "Mayapur", icon: <Map size={20} /> },
-  { name: "Old Kolkata", icon: <MapPin size={20} /> }
+  { name: "Home", icon: Home },
+  { name: "Ganga Ghat", icon: Waves },
+  { name: "Temples", icon: Sparkles },
+  { name: "Mayapur", icon: Map },
+  { name: "Old Kolkata", icon: MapPin }
 ];
 
 export const HER_ATTIRE = [
-  { name: "Sarees", icon: <Shirt size={20} /> },
-  { name: "Kurtis", icon: <Shirt size={20} /> },
-  { name: "Jhumkas", icon: <Gem size={20} /> },
-  { name: "Oxidised Jewellery", icon: <Gem size={20} /> },
-  { name: "Lehengas", icon: <Shirt size={20} /> },
-  { name: "Glass Bangles", icon: <Sparkles size={20} /> }
+  { name: "Sarees", icon: Shirt },
+  { name: "Kurtis", icon: Shirt },
+  { name: "Jhumkas", icon: Gem },
+  { name: "Oxidised Jewellery", icon: Gem },
+  { name: "Lehengas", icon: Shirt },
+  { name: "Glass Bangles", icon: Sparkles }
 ];
 
 export const HER_ACTORS = [
-  { name: "Shah Rukh Khan", icon: <User size={20} /> },
-  { name: "Dev", icon: <User size={20} /> },
-  { name: "Shahid Kapoor", icon: <User size={20} /> },
-  { name: "Sumedh Mudgalkar", icon: <User size={20} /> },
-  { name: "Ahaan Pandey", icon: <User size={20} /> }
+  { name: "Shah Rukh Khan", icon: User },
+  { name: "Dev", icon: User },
+  { name: "Shahid Kapoor", icon: User },
+  { name: "Sumedh Mudgalkar", icon: User },
+  { name: "Ahaan Pandey", icon: User }
 ];
 
 export const MAGICAL_LIKES = []; 

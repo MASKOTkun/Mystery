@@ -49,6 +49,7 @@ const EnchantedEnvelope: React.FC = () => {
     }
   };
 
+  // Fix: Explicitly type easing arrays as const to ensure they are recognized as [number, number, number, number] by Framer Motion's Easing type
   const pageVariants = {
     initial: (direction: number) => ({
       rotateY: direction > 0 ? 110 : -110,
@@ -60,7 +61,7 @@ const EnchantedEnvelope: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.4, 0, 0.2, 1]
+        ease: [0.4, 0, 0.2, 1] as const
       }
     },
     exit: (direction: number) => ({
@@ -69,7 +70,7 @@ const EnchantedEnvelope: React.FC = () => {
       transformOrigin: direction > 0 ? "right center" : "left center",
       transition: {
         duration: 0.8,
-        ease: [0.4, 0, 0.2, 1]
+        ease: [0.4, 0, 0.2, 1] as const
       }
     })
   };

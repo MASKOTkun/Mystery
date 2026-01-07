@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, Eye } from 'lucide-react';
+import { X, Sparkles, Eye, Star } from 'lucide-react';
 import { PENSIEVE_MEMORIES } from '../constants';
 
 const MemoryOrb: React.FC<{ 
@@ -17,40 +16,59 @@ const MemoryOrb: React.FC<{
       className="relative flex flex-col items-center group cursor-pointer"
       onClick={() => onSelect(memory)}
     >
-      {/* The Floating Orb */}
+      {/* Optimized Floating Orb - Using smoother transitions to prevent flicker */}
       <motion.div
         animate={{ 
-          y: [0, -20, 0],
-          x: [0, 10, -5, 0],
-          scale: [1, 1.05, 0.98, 1]
+          y: [0, -25, 10, -25, 0],
+          x: [0, 15, -15, 10, 0],
+          rotate: [0, 2, -2, 1, 0],
         }}
         transition={{ 
-          duration: 6 + index, 
+          duration: 10 + (index * 1.5), 
           repeat: Infinity, 
           ease: "easeInOut",
-          delay: index * 0.5
         }}
-        className={`w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${memory.color} relative shadow-[0_0_40px_rgba(180,220,255,0.4)] overflow-hidden group-hover:shadow-[0_0_60px_rgba(180,220,255,0.7)] transition-shadow duration-500`}
+        style={{ willChange: 'transform' }}
+        className={`w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${memory.color} relative shadow-[0_0_35px_rgba(180,220,255,0.25)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_0_70px_rgba(180,220,255,0.5)] group-hover:scale-110`}
       >
-        {/* Inner Swirl Effect */}
-        <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] mix-blend-overlay animate-pulse" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+        {/* Hardware-accelerated Inner Swirl */}
+        <div 
+          className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] animate-spin-slow pointer-events-none" 
+          style={{ transform: 'translateZ(0)' }}
+        />
         
-        {/* Glass Reflection */}
-        <div className="absolute top-2 left-1/4 w-1/2 h-1/4 bg-white/30 rounded-full blur-md -rotate-45" />
-        
-        {/* Hint of Image */}
-        <div className="absolute inset-0 opacity-10 grayscale group-hover:opacity-30 group-hover:grayscale-0 transition-all duration-700">
-           <img src={memory.image} className="w-full h-full object-cover scale-150" alt="" />
+        {/* Memory Image Glimpse */}
+        <div className="absolute inset-0 opacity-10 grayscale group-hover:opacity-40 group-hover:grayscale-0 transition-all duration-700 pointer-events-none">
+           <img 
+             src={memory.image} 
+             className="w-full h-full object-cover scale-[1.6]" 
+             alt="" 
+             loading="lazy"
+           />
         </div>
+
+        {/* Static Glass Highlight to prevent render-loop flickering */}
+        <div className="absolute top-[10%] left-[20%] w-[60%] h-[30%] bg-white/30 rounded-full blur-md -rotate-45 pointer-events-none" />
+        
+        {/* Subtle Pulsing Overlay */}
+        <motion.div 
+          animate={{ opacity: [0.1, 0.3, 0.1] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-white/10 pointer-events-none"
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.3)_0%,transparent_60%)] pointer-events-none" />
       </motion.div>
 
-      {/* Label */}
-      <motion.span 
-        className="mt-6 font-title text-[10px] uppercase tracking-[0.3em] text-blue-200/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      {/* Label Reveal */}
+      <motion.div 
+        className="mt-6 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0"
       >
-        View Memory
-      </motion.span>
+        <span className="font-title text-[9px] uppercase tracking-[0.4em] text-blue-200/40 font-bold">
+          Dive into Memory
+        </span>
+        <div className="w-8 h-[1px] bg-blue-300/20 mt-2 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+      </motion.div>
     </motion.div>
   );
 };
@@ -59,126 +77,139 @@ const PensieveMemories: React.FC = () => {
   const [selectedMemory, setSelectedMemory] = useState<typeof PENSIEVE_MEMORIES[0] | null>(null);
 
   return (
-    <section className="py-32 bg-[#0a0f18] relative overflow-hidden min-h-[800px] flex flex-col items-center">
-      {/* Mystical Background */}
+    <section className="py-20 bg-[#0a0f18] relative overflow-hidden min-h-[600px] flex flex-col items-center">
+      {/* Background with reduced complexity */}
       <div className="absolute inset-0 bg-gradient-to-b from-amber-50/5 via-[#0a0f18] to-[#0a0f18] z-0" />
       
-      {/* Swirling Mist Overlay */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-screen z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#1e293b_0%,transparent_70%)] animate-slow-pulse" />
+      {/* Background Wisps */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={`wisp-${i}`}
+            animate={{ 
+              y: [0, -100, 0],
+              opacity: [0, 0.2, 0],
+            }}
+            transition={{ duration: 12 + i, repeat: Infinity, delay: i * 0.5 }}
+            className="absolute text-blue-200/10"
+            style={{ left: `${(i * 17) % 100}%`, top: `${(i * 23) % 100}%` }}
+          >
+            <Star size={Math.random() * 4 + 2} fill="currentColor" />
+          </motion.div>
+        ))}
       </div>
 
       <div className="relative z-10 w-full max-w-6xl px-6">
-        <div className="text-center mb-20 space-y-4">
+        <div className="text-center mb-16 space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-4 text-blue-300/40 mb-2"
+            className="flex items-center justify-center gap-4 text-blue-400/20"
           >
-            <div className="h-[1px] w-12 bg-blue-300/20" />
-            <Sparkles size={20} />
-            <div className="h-[1px] w-12 bg-blue-300/20" />
+            <Sparkles size={22} className="animate-pulse" />
           </motion.div>
           
-          <h2 className="font-title text-3xl md:text-5xl text-blue-100 tracking-wider">The Pensieve Basin</h2>
-          <p className="font-sans text-[11px] uppercase tracking-[0.4em] text-blue-400/50 font-bold max-w-md mx-auto">
-            A sanctuary of light and shadow where your most radiant memories float in silence
+          <h2 className="font-title text-3xl md:text-5xl text-blue-50 tracking-[0.05em] drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+            The Pensieve Basin
+          </h2>
+          <p className="font-sans text-[9px] uppercase tracking-[0.5em] text-blue-400/30 font-black">
+            Drifting Memories of the Soul
           </p>
         </div>
 
-        {/* Floating Orbs Container */}
-        <div className="flex flex-wrap justify-center gap-12 md:gap-24 relative min-h-[400px]">
+        {/* Orbs Grid */}
+        <div className="flex flex-wrap justify-center gap-10 md:gap-20 relative">
           {PENSIEVE_MEMORIES.map((m, idx) => (
             <MemoryOrb key={m.id} memory={m} index={idx} onSelect={setSelectedMemory} />
-          ))}
-
-          {/* Background Wisps */}
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{ 
-                y: [0, -100, 0],
-                x: [0, Math.random() * 50 - 25, 0],
-                opacity: [0, 0.3, 0]
-              }}
-              transition={{ duration: 10 + Math.random() * 10, repeat: Infinity }}
-              className="absolute text-blue-200/10 pointer-events-none"
-              style={{ 
-                left: `${Math.random() * 100}%`, 
-                top: `${Math.random() * 100}%` 
-              }}
-            >
-              <Sparkles size={Math.random() * 20 + 10} />
-            </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Memory Modal - The "Dive" */}
+      {/* Stable Immersive Modal */}
       <AnimatePresence>
         {selectedMemory && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[2500] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-6"
+            className="fixed inset-0 z-[2500] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-12"
           >
             <motion.div
-              initial={{ scale: 0.5, rotateY: 90, opacity: 0 }}
-              animate={{ scale: 1, rotateY: 0, opacity: 1 }}
-              exit={{ scale: 1.5, opacity: 0 }}
-              transition={{ type: "spring", damping: 15 }}
-              className="relative w-full max-w-4xl aspect-[16/10] md:aspect-video rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(180,220,255,0.3)] border border-white/10"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.05, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative w-full max-w-4xl aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-white/5"
             >
-              <img 
-                src={selectedMemory.image} 
-                className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000"
-                alt=""
-              />
+              {/* MAGICAL BORDER */}
+              <div className="absolute inset-0 z-50 pointer-events-none">
+                 <motion.div 
+                   animate={{ 
+                     opacity: [0.3, 0.6, 0.3],
+                     borderColor: ["rgba(255,255,255,0.1)", "rgba(251,191,36,0.4)", "rgba(255,255,255,0.1)"]
+                   }}
+                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute inset-0 border-2 rounded-2xl" 
+                 />
+              </div>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 p-8 md:p-12 flex flex-col justify-end">
+              {/* Memory Image */}
+              <div className="absolute inset-0">
+                <motion.img 
+                  animate={{ scale: [1.1, 1.2, 1.1] }}
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  src={selectedMemory.image} 
+                  className="w-full h-full object-cover contrast-110"
+                  alt=""
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              </div>
+              
+              {/* Content Overlay */}
+              <div className="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.2 }}
+                  className="space-y-4"
                 >
-                  <h3 className="font-title text-2xl md:text-4xl text-white mb-4">{selectedMemory.title}</h3>
-                  <p className="font-script text-xl md:text-2xl text-blue-100/80 max-w-2xl leading-relaxed">
+                  <div className="flex items-center gap-3">
+                    <div className="h-[1px] w-8 bg-amber-400/30" />
+                    <h3 className="font-title text-2xl md:text-4xl text-white tracking-tight">{selectedMemory.title}</h3>
+                  </div>
+                  <p className="font-script text-xl md:text-3xl text-blue-100/90 italic leading-snug max-w-2xl">
                     "{selectedMemory.description}"
                   </p>
                 </motion.div>
               </div>
 
+              {/* Close Button */}
               <button 
                 onClick={() => setSelectedMemory(null)}
-                className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+                className="absolute top-6 right-6 p-3 bg-black/40 hover:bg-black/60 rounded-full text-white/50 hover:text-white transition-all backdrop-blur-md z-[60] border border-white/10"
               >
                 <X size={24} />
               </button>
-              
-              {/* Dive Ripple Effect */}
-              <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="absolute inset-0 pointer-events-none border-[20px] border-blue-400/10 rounded-2xl"
-              />
             </motion.div>
             
-            <div className="absolute bottom-10 flex flex-col items-center text-blue-300/40">
-               <Eye size={20} className="mb-2 animate-bounce" />
-               <span className="text-[10px] uppercase tracking-[0.4em]">Submerged in Memory</span>
+            {/* Modal Subtext */}
+            <div className="absolute bottom-10 flex flex-col items-center gap-2 text-blue-300/20">
+               <Eye size={20} className="animate-pulse" />
+               <span className="text-[10px] uppercase tracking-[0.5em]">Gazing into the Past</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <style>{`
-        @keyframes slow-pulse {
-          0%, 100% { transform: scale(1); opacity: 0.1; }
-          50% { transform: scale(1.1); opacity: 0.2; }
+        .animate-spin-slow { 
+          animation: spin 120s linear infinite; 
         }
-        .animate-slow-pulse { animation: slow-pulse 15s infinite ease-in-out; }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
       `}</style>
     </section>
   );

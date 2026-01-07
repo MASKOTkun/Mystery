@@ -13,14 +13,13 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background-color: #fff9e6; /* Soft sunshine cream */
+            background-color: #fff9e6;
         }
         .font-magic { font-family: 'Henny Penny', cursive; }
         .font-script { font-family: 'Dancing Script', cursive; }
         .font-title { font-family: 'Eagle Lake', serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
         
-        /* Parchment texture overlay */
         .parchment-overlay {
             position: fixed;
             top: 0;
@@ -33,39 +32,27 @@
             z-index: 50;
         }
 
-        /* Prevent scroll bounce on mobile */
         html, body {
             overscroll-behavior-y: none;
         }
 
-        /* Custom glow effects */
         .glow-yellow {
             text-shadow: 0 0 10px rgba(251, 191, 36, 0.6), 0 0 20px rgba(251, 191, 36, 0.4);
-        }
-        .glow-card {
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
-        }
-
-        /* Magical Shimmer Border Animation */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .magical-border-gradient {
-            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite linear;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "framer-motion": "https://esm.sh/framer-motion@^12.24.7",
-    "vite": "https://esm.sh/vite@^7.3.0",
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "lucide-react": "https://esm.sh/lucide-react@0.446.0?external=react",
+    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react,react-dom",
+    "@google/genai": "https://esm.sh/@google/genai@latest",
+    "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
