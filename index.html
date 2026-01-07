@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Little Birthday Magic for Sneha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600&family=Eagle+Lake&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #fff9e6; /* Soft sunshine cream */
+        }
+        .font-magic { font-family: 'Henny Penny', cursive; }
+        .font-script { font-family: 'Dancing Script', cursive; }
+        .font-title { font-family: 'Eagle Lake', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        
+        /* Parchment texture overlay */
+        .parchment-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+            opacity: 0.15;
+            z-index: 50;
+        }
+
+        /* Prevent scroll bounce on mobile */
+        html, body {
+            overscroll-behavior-y: none;
+        }
+
+        /* Custom glow effects */
+        .glow-yellow {
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.6), 0 0 20px rgba(251, 191, 36, 0.4);
+        }
+        .glow-card {
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+        }
+
+        /* Magical Shimmer Border Animation */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .magical-border-gradient {
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.24.7"
+  }
+}
+</script>
+</head>
+<body>
+    <div class="parchment-overlay"></div>
+    <div id="root"></div>
+</body>
+</html>
