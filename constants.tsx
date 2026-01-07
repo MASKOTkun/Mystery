@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Music, MapPin, Star, Mic, PenTool, Waves, BookOpen, Camera, Utensils, Sparkles, Heart, Flame, Cookie, Gift, Home, Map, Gem, Shirt, User } from 'lucide-react';
 import { PhotoMemory, SpellMessage, Song } from './types';
@@ -120,7 +119,7 @@ export const TWENTY_LETTERS = [
   },
   {
     title: "Chapter 9: The Warmth of Home",
-    content: "You have this incredible way of making anywhere feel like home. Your presence is like a warm fireplace in the Gryffindor common room—safe, inviting, and full of life.",
+    content: "You have this incredible way of making anywhere feel feel like home. Your presence is like a warm fireplace in the Gryffindor common room—safe, inviting, and full of life.",
     quote: "Home is where the heart is, and your heart is wide enough for everyone."
   },
   {
