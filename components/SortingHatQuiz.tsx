@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Scroll, RotateCcw, ChevronRight, Home } from 'lucide-react';
@@ -53,7 +54,7 @@ const SortingHatSVG: React.FC<{ isTalking?: boolean; isThinking?: boolean }> = (
               "M80 115 Q100 130 120 115"
             ],
             transition: { duration: 0.3, repeat: Infinity }
-          } : (isThinking ? { d: "M85 120 Q100 125 115 120" } : { d: "M80 115 Q100 130 120 115" }))
+          } : (isThinking ? { d: "M85 120 Q100 125 115 120" } : { d: "M80 115 Q100 130 120 115" })}
           d="M80 115 Q100 130 120 115" 
           stroke="#1A0F08" 
           strokeWidth="5" 

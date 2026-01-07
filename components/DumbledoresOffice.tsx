@@ -26,7 +26,7 @@ const INVISIBLE_POOL = [
 
 const SnitchWings: React.FC = () => (
   <div className="absolute inset-0 pointer-events-none" style={{ willChange: 'transform' }}>
-    {/* Left Wing - High-Speed flutter */}
+    {/* Left Wing - High-Speed flutter, slightly larger */}
     <motion.div
       animate={{ 
         rotateX: [0, 110, 0],
@@ -35,10 +35,10 @@ const SnitchWings: React.FC = () => (
         skewY: [-10, 10, -10]
       }}
       transition={{ duration: 0.05, repeat: Infinity, ease: "linear" }}
-      className="absolute right-1/2 top-1/2 -translate-y-1/2 w-8 h-3.5 bg-gradient-to-r from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-right mr-[5px]"
+      className="absolute right-1/2 top-1/2 -translate-y-1/2 w-10 h-4.5 bg-gradient-to-r from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-right mr-[6px]"
       style={{ willChange: 'transform' }}
     />
-    {/* Right Wing - High-Speed flutter */}
+    {/* Right Wing - High-Speed flutter, slightly larger */}
     <motion.div
       animate={{ 
         rotateX: [0, 110, 0],
@@ -47,22 +47,22 @@ const SnitchWings: React.FC = () => (
         skewY: [10, -10, 10]
       }}
       transition={{ duration: 0.05, repeat: Infinity, ease: "linear", delay: 0.025 }}
-      className="absolute left-1/2 top-1/2 -translate-y-1/2 w-8 h-3.5 bg-gradient-to-l from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-left ml-[5px]"
+      className="absolute left-1/2 top-1/2 -translate-y-1/2 w-10 h-4.5 bg-gradient-to-l from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-left ml-[6px]"
       style={{ willChange: 'transform' }}
     />
   </div>
 );
 
 const GoldenSnitch: React.FC<{ onCatch: () => void; index: number }> = ({ onCatch, index }) => {
-  // Stabilized erratic path
+  // Erratic high-velocity path
   const pathData = useMemo(() => {
-    const points = 10;
+    const points = 12;
     return {
-      x: Array.from({ length: points }, () => `${Math.random() * 85 + 7.5}vw`),
-      y: Array.from({ length: points }, () => `${Math.random() * 85 + 7.5}vh`),
+      x: Array.from({ length: points }, () => `${Math.random() * 80 + 10}vw`),
+      y: Array.from({ length: points }, () => `${Math.random() * 80 + 10}vh`),
       rotate: Array.from({ length: points }, () => Math.random() * 1440 - 720),
-      scale: Array.from({ length: points }, () => 0.9 + Math.random() * 0.3),
-      duration: 10 + Math.random() * 6
+      scale: Array.from({ length: points }, () => 1.0 + Math.random() * 0.4),
+      duration: 7 + Math.random() * 5 // High speed
     };
   }, []);
 
@@ -90,15 +90,16 @@ const GoldenSnitch: React.FC<{ onCatch: () => void; index: number }> = ({ onCatc
       }}
       style={{ willChange: 'transform' }}
     >
-      <div className="relative group p-8 -m-8 flex items-center justify-center">
+      <div className="relative group p-10 -m-10 flex items-center justify-center">
         <SnitchWings />
         <motion.div 
-          animate={{ scale: [1, 2, 1], opacity: [0.1, 0.4, 0.1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ scale: [1, 2.2, 1], opacity: [0.1, 0.5, 0.1] }}
+          transition={{ duration: 1.2, repeat: Infinity }}
           className="absolute inset-0 bg-amber-400 blur-3xl rounded-full pointer-events-none"
         />
-        <div className="w-5 h-5 bg-gradient-to-br from-amber-100 via-amber-500 to-amber-900 rounded-full shadow-[0_0_30px_rgba(251,191,36,0.8)] border border-amber-200/60 relative z-10">
-           <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full blur-[0.2px] opacity-60" />
+        {/* Core Body - Increased for visibility (w-7) */}
+        <div className="w-7 h-7 bg-gradient-to-br from-amber-100 via-amber-500 to-amber-900 rounded-full shadow-[0_0_35px_rgba(251,191,36,0.9)] border border-amber-200/60 relative z-10">
+           <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 bg-white rounded-full blur-[0.2px] opacity-70" />
         </div>
       </div>
     </motion.div>
@@ -145,7 +146,6 @@ const DumbledoresOffice: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [snitchCaught, setSnitchCaught] = useState(false);
   const [activeMessage, setActiveMessage] = useState("");
   
-  // Memoize all complex background animations to prevent recalculation on every state change
   const scatteredWords = useMemo(() => 
     INVISIBLE_POOL.map((word) => ({
       text: word,
