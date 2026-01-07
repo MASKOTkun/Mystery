@@ -42,31 +42,38 @@ export const SNEHA_PHOTOS: PhotoMemory[] = [
 export const PENSIEVE_MEMORIES = [
   {
     id: 1,
-    title: "The First Spark",
-    description: "A memory of pure radiance when you first discovered your magic.",
-    image: getDriveUrl("10FFcUoufS9pG66kMXL5V3ai-Ns5iVyLH"),
-    color: "from-blue-200 to-indigo-400"
+    title: "The Young Alchemist",
+    description: "A memory from when every puddle was a potion and every stick a wand. The magic was just beginning to brew in those bright eyes.",
+    image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0021.jpg",
+    color: "from-amber-200 via-yellow-100 to-orange-200"
   },
   {
     id: 2,
-    title: "Midnight Whispers",
-    description: "Conversations that lasted until the stars began to fade.",
-    image: getDriveUrl("14oKSDZ_0Hb6zqfFBjmkyTzOww7U0o3s5"),
-    color: "from-slate-200 to-blue-300"
+    title: "First Enchantments",
+    description: "Eyes wide with the kind of wonder that only exists before the world grows large. A pure, unfiltered light that hasn't dimmed in twenty years.",
+    image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0019.jpg",
+    color: "from-blue-100 via-indigo-50 to-purple-100"
   },
   {
     id: 3,
-    title: "Golden Hour",
-    description: "That specific warmth that only arrives when you laugh.",
-    image: getDriveUrl("1MocY8nulWSm9hkqrHp8QvV03R5_aD99J"),
-    color: "from-amber-100 to-blue-200"
+    title: "The Tiny Trailblazer",
+    description: "Small feet making giant prints in the hearts of everyone you met. Even then, you were leading the way to joy and laughter.",
+    image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0014.jpg",
+    color: "from-rose-100 via-pink-50 to-amber-100"
   },
   {
     id: 4,
-    title: "The Eternal Bloom",
-    description: "Like a sunflower turning to the sun, you find the light.",
-    image: getDriveUrl("1UMnmUWQ8jtDv3OK4z4QJW0fbXRg7glmB"),
-    color: "from-white to-sky-200"
+    title: "Whispers of Innocence",
+    description: "A quiet moment of childhood peace, where the soul was as clear as a crystal ball and twice as bright as the morning sun.",
+    image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0011.jpg",
+    color: "from-emerald-50 via-teal-50 to-cyan-100"
+  },
+  {
+    id: 5,
+    title: "The Eternal Sparkle",
+    description: "The foundations of the incredible woman you are today. That same mischievous smile, captured just a few chapters earlier in your story.",
+    image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0008.jpg",
+    color: "from-violet-100 via-fuchsia-50 to-pink-200"
   }
 ];
 
