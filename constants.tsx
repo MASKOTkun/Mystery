@@ -9,10 +9,8 @@ export const COLORS = {
   background: '#FFFBEB', // Parchment Beige
 };
 
-// Use the lh3.googleusercontent.com delivery network which is the most reliable for embedding
 const getDriveUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 
-// Reliable direct MP3 link
 export const BACKGROUND_MUSIC_URL = `https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/jugraafiya_UjySwKpo.mp3`;
 
 export const SNEHA_PHOTOS: PhotoMemory[] = [
@@ -49,28 +47,28 @@ export const PENSIEVE_MEMORIES = [
   {
     id: 2,
     title: "First Enchantments",
-    description: "Eyes wide with the kind of wonder that only exists before the world grows large. A pure, unfiltered light that hasn't dimmed in twenty years.",
+    description: "Eyes wide with the kind of wonder that only exists before the world grows large. A pure, unfiltered light.",
     image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0019.jpg",
     color: "from-blue-100 via-indigo-50 to-purple-100"
   },
   {
     id: 3,
     title: "The Tiny Trailblazer",
-    description: "Small feet making giant prints in the hearts of everyone you met. Even then, you were leading the way to joy and laughter.",
+    description: "Small feet making giant prints in the hearts of everyone you met. Even then, you were leading the way to joy.",
     image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0014.jpg",
     color: "from-rose-100 via-pink-50 to-amber-100"
   },
   {
     id: 4,
     title: "Whispers of Innocence",
-    description: "A quiet moment of childhood peace, where the soul was as clear as a crystal ball and twice as bright as the morning sun.",
+    description: "A quiet moment of childhood peace, where the soul was as clear as a crystal ball and twice as bright.",
     image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0011.jpg",
     color: "from-emerald-50 via-teal-50 to-cyan-100"
   },
   {
     id: 5,
     title: "The Eternal Sparkle",
-    description: "The foundations of the incredible woman you are today. That same mischievous smile, captured just a few chapters earlier in your story.",
+    description: "The foundations of the incredible woman you are today. That same mischievous smile, just a few chapters earlier.",
     image: "https://cdn.jsdelivr.net/gh/MASKOTkun/Music@main/IMG-20251226-WA0008.jpg",
     color: "from-violet-100 via-fuchsia-50 to-pink-200"
   }
