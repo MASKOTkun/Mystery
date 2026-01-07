@@ -25,29 +25,27 @@ const INVISIBLE_POOL = [
 ];
 
 const SnitchWings: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none" style={{ willChange: 'transform' }}>
-    {/* Left Wing - High-Speed flutter, slightly larger */}
+  <div className="absolute inset-0 pointer-events-none z-20" style={{ transformStyle: 'preserve-3d' }}>
+    {/* Left Wing - High-Speed flutter, more visible opacity */}
     <motion.div
       animate={{ 
-        rotateX: [0, 110, 0],
-        rotateY: [15, 45, 15],
-        scaleX: [1, 0.6, 1],
-        skewY: [-10, 10, -10]
+        rotateX: [0, 90, -90, 0],
+        rotateY: [10, 40, 10],
+        scaleX: [1, 0.7, 1],
       }}
-      transition={{ duration: 0.05, repeat: Infinity, ease: "linear" }}
-      className="absolute right-1/2 top-1/2 -translate-y-1/2 w-10 h-4.5 bg-gradient-to-r from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-right mr-[6px]"
+      transition={{ duration: 0.1, repeat: Infinity, ease: "linear" }}
+      className="absolute right-1/2 top-1/2 -translate-y-1/2 w-12 h-5 bg-gradient-to-r from-transparent via-white/80 to-amber-100/90 rounded-full blur-[0.2px] origin-right mr-[8px] shadow-[0_0_10px_rgba(255,255,255,0.4)]"
       style={{ willChange: 'transform' }}
     />
-    {/* Right Wing - High-Speed flutter, slightly larger */}
+    {/* Right Wing - High-Speed flutter, more visible opacity */}
     <motion.div
       animate={{ 
-        rotateX: [0, 110, 0],
-        rotateY: [-15, -45, -15],
-        scaleX: [1, 0.6, 1],
-        skewY: [10, -10, 10]
+        rotateX: [0, -90, 90, 0],
+        rotateY: [-10, -40, -10],
+        scaleX: [1, 0.7, 1],
       }}
-      transition={{ duration: 0.05, repeat: Infinity, ease: "linear", delay: 0.025 }}
-      className="absolute left-1/2 top-1/2 -translate-y-1/2 w-10 h-4.5 bg-gradient-to-l from-transparent via-amber-100/60 to-white/80 rounded-full blur-[0.4px] origin-left ml-[6px]"
+      transition={{ duration: 0.1, repeat: Infinity, ease: "linear", delay: 0.05 }}
+      className="absolute left-1/2 top-1/2 -translate-y-1/2 w-12 h-5 bg-gradient-to-l from-transparent via-white/80 to-amber-100/90 rounded-full blur-[0.2px] origin-left ml-[8px] shadow-[0_0_10px_rgba(255,255,255,0.4)]"
       style={{ willChange: 'transform' }}
     />
   </div>
@@ -62,7 +60,7 @@ const GoldenSnitch: React.FC<{ onCatch: () => void; index: number }> = ({ onCatc
       y: Array.from({ length: points }, () => `${Math.random() * 80 + 10}vh`),
       rotate: Array.from({ length: points }, () => Math.random() * 1440 - 720),
       scale: Array.from({ length: points }, () => 1.0 + Math.random() * 0.4),
-      duration: 7 + Math.random() * 5 // High speed
+      duration: 6 + Math.random() * 5 // High speed
     };
   }, []);
 
@@ -90,16 +88,23 @@ const GoldenSnitch: React.FC<{ onCatch: () => void; index: number }> = ({ onCatc
       }}
       style={{ willChange: 'transform' }}
     >
-      <div className="relative group p-10 -m-10 flex items-center justify-center">
+      <div className="relative group p-12 -m-12 flex items-center justify-center">
+        {/* Core Wings */}
         <SnitchWings />
+        
+        {/* Glow Aura - Moved to background of the ball */}
         <motion.div 
-          animate={{ scale: [1, 2.2, 1], opacity: [0.1, 0.5, 0.1] }}
-          transition={{ duration: 1.2, repeat: Infinity }}
-          className="absolute inset-0 bg-amber-400 blur-3xl rounded-full pointer-events-none"
+          animate={{ scale: [1, 2.5, 1], opacity: [0.1, 0.4, 0.1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="absolute inset-0 bg-amber-400 blur-3xl rounded-full pointer-events-none z-0"
         />
-        {/* Core Body - Increased for visibility (w-7) */}
-        <div className="w-7 h-7 bg-gradient-to-br from-amber-100 via-amber-500 to-amber-900 rounded-full shadow-[0_0_35px_rgba(251,191,36,0.9)] border border-amber-200/60 relative z-10">
-           <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 bg-white rounded-full blur-[0.2px] opacity-70" />
+
+        {/* Core Body - Main Golden Ball */}
+        <div className="w-8 h-8 bg-gradient-to-br from-amber-100 via-amber-500 to-amber-900 rounded-full shadow-[0_0_40px_rgba(251,191,36,1)] border border-amber-200/60 relative z-10">
+           {/* Detailed Engravings */}
+           <div className="absolute inset-0 border border-white/20 rounded-full" />
+           {/* Reflective Highlight */}
+           <div className="absolute top-2 left-2 w-2 h-2 bg-white rounded-full blur-[0.2px] opacity-80" />
         </div>
       </div>
     </motion.div>
